@@ -30,7 +30,7 @@ export const ConcertsList = () => {
               <a>{concert.date} &bull; {concert.description}</a>
             </Link>
             <ul>
-              {concert.bands.map(band => (
+              {concert.bands.filter(band => band.name).map(band => (
                 <li key={band.id}>
                   {band.name} {band.country}
                 </li>

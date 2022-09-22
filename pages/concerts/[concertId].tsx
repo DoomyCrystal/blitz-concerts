@@ -15,17 +15,24 @@ export const Concert = () => {
   const concertId = useParam("concertId", "number");
   const [deleteConcertMutation] = useMutation(deleteConcert);
   const [concert] = useQuery(getConcert, { id: concertId });
+  console.log(concert);
 
   return (
     <>
       <Head>
-        <title>Concert {concert.id}</title>
+        <title>Concert {concert.date}</title>
       </Head>
 
       <div>
-        <h1>Concert {concert.id}</h1>
-        <pre>{JSON.stringify(concert, null, 2)}</pre>
-
+        <h1>Concert {concert.date}</h1>
+        <p>{concert.description}</p>
+        <ul>
+          {concert.bands.filter(band => band.name).map((band) => (
+            <li key={band.id}>
+              {band.name} - {band.country}
+            </li>
+          ))}
+        </ul>
         <Link href={Routes.EditConcertPage({ concertId: concert.id })}>
           <a>Edit</a>
         </Link>
