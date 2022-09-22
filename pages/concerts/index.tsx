@@ -29,6 +29,13 @@ export const ConcertsList = () => {
             <Link href={Routes.ShowConcertPage({ concertId: concert.id })}>
               <a>{concert.date} &bull; {concert.description}</a>
             </Link>
+            <ul>
+              {concert.bands.map(band => (
+                <li key={band.id}>
+                  {band.name} {band.country}
+                </li>
+              ))}
+            </ul>
           </li>
         ))}
       </ul>

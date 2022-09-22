@@ -10,6 +10,9 @@ export function ConcertForm<S extends z.ZodType<any, any>>(
     <Form<S> {...props}>
       <LabeledTextField name="date" label="Datum" placeholder="Datum" />
       <LabeledTextField name="description" label="Beschreibung" placeholder="Beschreibung" />
+      <LabeledTextField name="bands.0.name" label="Band 1" />
+      <LabeledTextField name="bands.1.name" label="Band 2" />
+      <LabeledTextField name="bands.2.name" label="Band 3" />
     </Form>
   );
 }

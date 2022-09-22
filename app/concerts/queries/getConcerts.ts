@@ -22,7 +22,7 @@ export default resolver.pipe(
       take,
       count: () => db.concert.count({ where }),
       query: (paginateArgs) =>
-        db.concert.findMany({ ...paginateArgs, where, orderBy }),
+        db.concert.findMany({ ...paginateArgs, where, orderBy, include: { bands: true} }),
     });
 
     return {

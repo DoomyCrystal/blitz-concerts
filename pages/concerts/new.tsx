@@ -5,6 +5,7 @@ import { useMutation } from "@blitzjs/rpc";
 import Layout from "app/core/layouts/Layout";
 import createConcert from "app/concerts/mutations/createConcert";
 import { ConcertForm, FORM_ERROR } from "app/concerts/components/ConcertForm";
+import { CreateConcert } from "app/concerts/validations";
 
 const NewConcertPage = () => {
   const router = useRouter();
@@ -16,11 +17,8 @@ const NewConcertPage = () => {
 
       <ConcertForm
         submitText="Create Concert"
-        // TODO use a zod schema for form validation
-        //  - Tip: extract mutation's schema into a shared `validations.ts` file and
-        //         then import and use it here
-        // schema={CreateConcert}
-        // initialValues={{}}
+        schema={CreateConcert}
+        initialValues={{ name: "", bands: [] }}
         onSubmit={async (values) => {
           try {
             const concert = await createConcertMutation(values);

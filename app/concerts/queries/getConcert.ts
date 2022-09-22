@@ -13,7 +13,10 @@ export default resolver.pipe(
   resolver.authorize(),
   async ({ id }) => {
     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    const concert = await db.concert.findFirst({ where: { id } });
+    const concert = await db.concert.findFirst({ 
+      where: { id },
+      include: { bands: true },
+    });
 
     if (!concert) throw new NotFoundError();
 

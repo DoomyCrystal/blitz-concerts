@@ -19,11 +19,11 @@ export const Band = () => {
   return (
     <>
       <Head>
-        <title>Band {band.id}</title>
+        <title>Band {band.name}</title>
       </Head>
 
       <div>
-        <h1>Band {band.id}</h1>
+        <h1>{band.name}</h1>
         <pre>{JSON.stringify(band, null, 2)}</pre>
 
         <Link href={Routes.EditBandPage({ bandId: band.id })}>
