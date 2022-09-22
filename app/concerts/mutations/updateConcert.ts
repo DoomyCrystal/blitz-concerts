@@ -2,18 +2,19 @@ import { resolver } from "@blitzjs/rpc";
 import db from "db";
 import { z } from "zod";
 
-const CreateTodo = z.object({
-  name: z.string(),
+const UpdateConcert = z.object({
+  id: z.number(),
+  date: z.string(),
   description: z.string(),
 });
 
 export default resolver.pipe(
-  resolver.zod(CreateTodo),
+  resolver.zod(UpdateConcert),
   resolver.authorize(),
-  async (input) => {
+  async ({ id, ...data }) => {
     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    const todo = await db.todo.create({ data: input });
+    const concert = await db.concert.update({ where: { id }, data });
 
-    return todo;
+    return concert;
   }
 );

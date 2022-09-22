@@ -58,8 +58,9 @@ model Token {
 }
 
 model Todo {
-  id   Int    @id @default(autoincrement())
-  name String
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String?
 }
 
 // NOTE: It's highly recommended to use an enum for the token type
@@ -68,3 +69,22 @@ model Todo {
 // enum TokenType {
 //   RESET_PASSWORD
 // }
+
+model Band {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  country   String?
+  Concert   Concert? @relation(fields: [concertId], references: [id])
+  concertId Int?
+}
+
+model Concert {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  date        String
+  description String
+  bands       Band[]
+}
