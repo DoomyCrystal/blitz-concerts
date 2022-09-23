@@ -6,6 +6,7 @@ import { usePaginatedQuery } from "@blitzjs/rpc";
 import { useRouter } from "next/router";
 import Layout from "app/core/layouts/Layout";
 import getConcerts from "app/concerts/queries/getConcerts";
+import Nav from "pages/nav";
 
 const ITEMS_PER_PAGE = 100;
 
@@ -40,10 +41,10 @@ export const ConcertsList = () => {
         ))}
       </ul>
 
-      <button disabled={page === 0} onClick={goToPreviousPage}>
+      <button className="btn" disabled={page === 0} onClick={goToPreviousPage}>
         Previous
       </button>
-      <button disabled={!hasMore} onClick={goToNextPage}>
+      <button className="btn" disabled={!hasMore} onClick={goToNextPage}>
         Next
       </button>
     </div>
@@ -58,9 +59,10 @@ const ConcertsPage = () => {
       </Head>
 
       <div>
+        <Nav />
         <p>
           <Link href={Routes.NewConcertPage()}>
-            <a>Create Concert</a>
+            <a className="btn">Create Concert</a>
           </Link>
         </p>
 

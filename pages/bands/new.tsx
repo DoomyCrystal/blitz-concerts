@@ -12,8 +12,12 @@ const NewBandPage = () => {
 
   return (
     <Layout title={"Create New Band"}>
+      <p>
+        <Link href={Routes.BandsPage()}>
+          <a>Back to Bands</a>
+        </Link>
+      </p>
       <h1>Create New Band</h1>
-
       <BandForm
         submitText="Create Band"
         // TODO use a zod schema for form validation
@@ -33,12 +37,6 @@ const NewBandPage = () => {
           }
         }}
       />
-
-      <p>
-        <Link href={Routes.BandsPage()}>
-          <a>Bands</a>
-        </Link>
-      </p>
     </Layout>
   );
 };

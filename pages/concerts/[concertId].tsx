@@ -15,7 +15,6 @@ export const Concert = () => {
   const concertId = useParam("concertId", "number");
   const [deleteConcertMutation] = useMutation(deleteConcert);
   const [concert] = useQuery(getConcert, { id: concertId });
-  console.log(concert);
 
   return (
     <>

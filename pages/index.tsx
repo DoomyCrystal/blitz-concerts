@@ -7,6 +7,7 @@ import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
 import { useMutation } from "@blitzjs/rpc"
 import { Routes, BlitzPage } from "@blitzjs/next"
+import Nav from "./nav"
 
 /*
  * This file is just for a pleasant getting started page for your new app.
@@ -61,6 +62,7 @@ const Home: BlitzPage = () => {
           <div className="logo">
             <Image src={`${logo.src}`} alt="blitzjs" width="256px" height="118px" layout="fixed" />
           </div>
+          <Nav />
           <p>
             <strong>Congrats!</strong> Your app is ready, including user sign-up and log-in.
           </p>

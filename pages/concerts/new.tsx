@@ -13,12 +13,17 @@ const NewConcertPage = () => {
 
   return (
     <Layout title={"Create New Concert"}>
+      <p>
+        <Link href={Routes.ConcertsPage()}>
+          <a>Back to Concerts</a>
+        </Link>
+      </p>
       <h1>Create New Concert</h1>
 
       <ConcertForm
         submitText="Create Concert"
         schema={CreateConcert}
-        initialValues={{ name: "", bands: [] }}
+        initialValues={{ date: "", bands: [] }}
         onSubmit={async (values) => {
           try {
             const concert = await createConcertMutation(values);
@@ -32,11 +37,7 @@ const NewConcertPage = () => {
         }}
       />
 
-      <p>
-        <Link href={Routes.ConcertsPage()}>
-          <a>Concerts</a>
-        </Link>
-      </p>
+
     </Layout>
   );
 };

@@ -9,13 +9,25 @@ import { useFormContext } from "react-hook-form";
 
 const ITEMS_PER_PAGE = 100
 
-function CheckBox({ label, name }) {
+function CheckBox({ label, name, value }) {
   const { register, formState: { isSubmitting } } = useFormContext()
   return (
-    <label>
-      <input type="checkbox" disabled={isSubmitting} value={name} {...register(name)} />
+    <label className="block mb-2">
+      <input type="checkbox" disabled={isSubmitting} value={value} {...register(name)} />
       {label}
     </label>
+  )
+}
+
+function DateInput({ name, label }) {
+  const { register, formState: { isSubmitting } } = useFormContext()
+
+  return (
+    <>
+      <label>{label}</label>
+      <input type="date" disabled={isSubmitting} {...register(name)} />
+    </>
+
   )
 }
 
@@ -33,13 +45,15 @@ export function ConcertForm<S extends z.ZodType<any, any>>(
 
   return (
     <Form<S> {...props}>
-      <LabeledTextField name="date" label="Datum" placeholder="Datum" />
+      <DateInput name="date" label="Datum" />
       <LabeledTextField name="description" label="Beschreibung" placeholder="Beschreibung" />
       <fieldset>
         <legend>Bands</legend>
-        {bands.filter(band => band.name).map((band, index) => (
-          <CheckBox key={band.id} name={`bands.${index}.name`} label={band.name} />
-        ))}
+        <div className="border p-4 max-w-sm max-h-64 overflow-auto">
+          {bands.filter(band => band.name).map((band, index) => (
+            <CheckBox key={band.id} name="bands" value={`bands.${index}.name`} label={band.name} />
+          ))}
+        </div>
       </fieldset>
     </Form>
   );

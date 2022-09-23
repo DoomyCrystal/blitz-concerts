@@ -1,0 +1,45 @@
+@layer base {
+  html {
+    font-size: 20px;
+  }
+
+  body {
+    @apply p-8;
+  }
+
+  h1 {
+    @apply mb-6 text-xl font-medium;
+  }
+
+  ol {
+    @apply my-4 list-decimal list-inside;
+  }
+
+  ul {
+    @apply my-4 list-disc list-inside;
+
+    ul {
+      @apply ml-4 my-0;
+    }
+
+    li {
+      @apply my-1;
+    }
+  }
+
+  a:not(.btn) {
+    @apply underline text-blue-700;
+  }
+
+  .btn {
+    @apply inline-flex px-2 py-1 border-2 rounded-md border-gray-200 font-medium disabled:opacity-25 hover:bg-gray-200 hover:cursor-pointer disabled:hover:cursor-not-allowed;
+  }
+
+  input[type="date"] {
+    @apply px-2 py-1 block border border-black rounded-sm;
+  }
+
+  input[type="checkbox"] {
+    @apply mr-2;
+  }
+}

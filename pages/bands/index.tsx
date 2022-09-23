@@ -6,6 +6,7 @@ import { usePaginatedQuery } from "@blitzjs/rpc";
 import { useRouter } from "next/router";
 import Layout from "app/core/layouts/Layout";
 import getBands from "app/bands/queries/getBands";
+import Nav from "pages/nav";
 
 const ITEMS_PER_PAGE = 100;
 
@@ -24,19 +25,19 @@ export const BandsList = () => {
   return (
     <div>
       <ul>
-        {bands.map((band) => (
+        {bands.filter(band => band.name).map((band) => (
           <li key={band.id}>
             <Link href={Routes.ShowBandPage({ bandId: band.id })}>
-              <a>{band.name}</a>
+              <a>{band.name} {band.country && <span>({band.country})</span>}</a>
             </Link>
           </li>
         ))}
       </ul>
 
-      <button disabled={page === 0} onClick={goToPreviousPage}>
+      <button className="btn" disabled={page === 0} onClick={goToPreviousPage}>
         Previous
       </button>
-      <button disabled={!hasMore} onClick={goToNextPage}>
+      <button className="btn" disabled={!hasMore} onClick={goToNextPage}>
         Next
       </button>
     </div>
@@ -51,9 +52,10 @@ const BandsPage = () => {
       </Head>
 
       <div>
+        <Nav />
         <p>
           <Link href={Routes.NewBandPage()}>
-            <a>Create Band</a>
+            <a className="btn">Create Band</a>
           </Link>
         </p>
 
